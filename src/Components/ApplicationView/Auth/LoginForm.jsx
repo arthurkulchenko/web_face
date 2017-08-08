@@ -1,5 +1,5 @@
 import React from 'react'
-import { newApiSessionAddress, registrationAddress, restorePasswordAddress } from '../Config/ApiConfig'
+import { newApiSessionAddress, registrationAddress, restorePasswordAddress } from '../../../Config/ApiConfig'
 import axios from 'axios';
 export default class LoginForm extends React.Component{
   constructor(props) {
@@ -13,6 +13,7 @@ export default class LoginForm extends React.Component{
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.loggingIn = this.loggingIn.bind(this)
   }
+
   loggingIn(){
     axios({
             params:{
@@ -28,7 +29,7 @@ export default class LoginForm extends React.Component{
       return response.data
     }).catch((error) => {
       return error.data
-    }).then(alert("Yo"))
+    }) //.then(alert("Yo"))
   }
   
   handleEmailChange = e => {

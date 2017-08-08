@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Gasket from './Components/Gasket'
+import ApplicationView from './Components/ApplicationView'
 
 class App extends Component {
   render() {
     return(
-      <Gasket />
+      <ApplicationView />
     )
   }
 }

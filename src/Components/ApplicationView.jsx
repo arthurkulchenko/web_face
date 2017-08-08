@@ -1,12 +1,19 @@
 import React from 'react'
 
-// import { LogPage, authenticatedUser, authenticationError } from './Components/LogPage'
-import LogPage from './Components/LogPage'
-import Form from './Components/TestingComponent'
+import Auth from '../Components/ApplicationView/Auth'
+// import LogPage from '../Components/Auth/LogPage'
+
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
-export default class Gasket extends React.Component{
-  function _ensureAuthenticated(nextState, replace, callback) {
+export default class ApplicationView extends React.Component{
+  render(){
+    return(
+      <Auth />
+      // <LogPage />
+    )
+  }
+  // empty() {
+    // function ensureAuthenticated(nextState, replace, callback) {
   //   const { dispatch } = store 
   //   const { session } = store.getState()
   //   const { currentUser } = session
@@ -18,31 +25,20 @@ export default class Gasket extends React.Component{
   //   }
 
   //   callback()
-    }
-    return (
-            // <Router>
-            // <LogPage />
-            // </Router>
-            /*
-            if authenticationDone?{
-              return <AuthenApp />
-            }
-            else{
-              return <LogPage />
-            }
-
-            */
-            <Route component={App}>
-              <Route path='/signin' component={LogPage} />
+    // return (
+            
+            // <Route component={App}>
+              // <Route path='/signin' component={LogPage} />
               // <Route path='/signup' component={SignupContainer} />
               // <Route path='/' component={AuthenticatedApp} onEnter={_ensureAuthenticated}>
-              <Route path='/' component={PrivateCabinet} onEnter={_ensureAuthenticated}>
+              // <Route path='/' component={PrivateCabinet} onEnter={_ensureAuthenticated}>
                 // <Route component={ReportContainer}>
                 //   <Route path='/activities' component={ActivitiesContainer} />
                 //   <Route path='/activities/:id' component={CaptionsContainer} />
                 // </Route>
-              </Route>
-            </Route>
-    );
+              // </Route>
+            // </Route>
+    // )
+  // }
   
 }
