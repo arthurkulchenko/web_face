@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import LogPage from './Components/LogPage'
+import Gasket from './Components/Gasket'
 
 class App extends Component {
   render() {
-    return (
-              <LogPage />
-    );
+    return(
+      <Gasket />
+    )
   }
 }
 
