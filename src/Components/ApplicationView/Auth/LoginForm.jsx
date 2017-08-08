@@ -1,14 +1,14 @@
 import React from 'react'
-import { newApiSessionAddress, registrationAddress, restorePasswordAddress } from '../../../Config/ApiConfig'
 import axios from 'axios';
+import { newApiSessionAddress, registrationAddress, restorePasswordAddress } from '../../../Config/ApiConfig'
 export default class LoginForm extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-      user: "",
-      usersEmail: "",
-      usersPassword: ""
-    };
+    this.state = { 
+                   request: null,
+                   usersEmail: '',
+                   usersPassword: '',
+                 }
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.loggingIn = this.loggingIn.bind(this)
@@ -19,32 +19,20 @@ export default class LoginForm extends React.Component{
             params:{
                     email: this.state.usersEmail,
                     password: this.state.usersPassword
-                   },
+                   },// IMPORTANT THAT PARAMS MUST BE FIRST
             method: 'post',
             url: newApiSessionAddress,
-      }
-    ).then(response => {
-      const json = JSON.stringify(response.data)
-      this.setState({user: json})
-      return response.data
-    }).catch((error) => {
-      return error.data
-    }) //.then(alert("Yo"))
+          }
+         ).then(response => {this.props.onChange(response)})
+          .catch(error => {this.props.onChange(error.response)})
   }
   
   handleEmailChange = e => {
-    this.setState({
-      usersEmail: e.target.value
-      }, () => { 
-                console.log(this.state.usersEmail)
-                }
-    )
+    this.setState({usersEmail: e.target.value})
   }
 
   handlePasswordChange(e){
-    this.setState({
-      usersPassword: e.target.value
-    })
+    this.setState({usersPassword: e.target.value})
   }
 
   render(){

@@ -1,4 +1,4 @@
-import React from 'react'
+import React         from 'react'
 import LoginForm     from './Auth/LoginForm'
 import WelcomeHeader from './Auth/WelcomeHeader'
 
@@ -6,23 +6,27 @@ export default class Auth extends React.Component{
   constructor(props){
     super(props)
     this.state = ({
-      isAuthorized: false
+      request: null
     })
+    this.changeAuthStatus = this.changeAuthStatus.bind(this)
   }
-  changeAuthStatus(ofUser){
-    const user = JSON.parse(ofUser)
-    const status = user ? true : false
+  changeAuthStatus(result){
     this.setState({
-      isAuthorized: status
-    }, () => { console.log("HI") }
-    
+      request: result,
+    }, () => { 
+               console.log(result.status)
+               console.log(result.data)
+             }
     )
+  }
+  messagingToUserOrAuth(){
+    // TODO
   }
   render(){
     return(
       <div className="ui middle aligned center aligned grid container">
         <WelcomeHeader />
-        <LoginForm onChange={this.changeAuthStatus}/>
+        <LoginForm user={this.state.user} onChange={this.changeAuthStatus}/>
       </div>
     )
   }
