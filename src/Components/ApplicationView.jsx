@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 export default class ApplicationView extends React.Component{
   render(){
     return(
-      <Auth />
+      // Every DIV beyond must be full size 100%
+        <Auth />
       // <LogPage />
     )
   }
