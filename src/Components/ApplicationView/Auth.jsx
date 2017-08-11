@@ -1,38 +1,29 @@
 import React         from 'react'
+import PropTypes     from 'prop-types'
 import LoginForm     from './Auth/LoginForm'
 import WelcomeHeader from './Auth/WelcomeHeader'
 import ModalWin      from '../ModalWin'
-import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 export default class Auth extends React.Component{
   constructor(props){
     super(props)
     this.state = ({
-      request: null
+      request: null,
+      request_status: null
     })
     this.changeAuthStatus = this.changeAuthStatus.bind(this)
   }
-  
-  changeAuthStatus(result){
-    this.setState({
-      request: result,
 
-    }, () => { 
-               // if (result.status === 200){
-               // // }else if(result.status === 200){
-               // //   //TODO page redirect
-               //   var obj = document.getElementsByClassName('modal')
-               //   alert(obj[0])
-               //   obj[0].modalShow
-                 
-               // //   // $('.ui.modal').modal('show')
-               // //   this.runModalWin
-               // // }else{
-               // //   alert(result)
-               // }
-               // console.log(result.status)
-               // console.log(result.data)
-             }
+  changeAuthStatus(result){
+    this.setState({request: result}, () => { 
+                                             if (result.status === 200){
+                                               this.props.history.push('/app')
+                                             }else if ( result.status === 404 ){
+                                               console.log('authentication failed')
+                                             }else{
+                                               console.log(result.status)
+                                             }
+                                            }
     )
   }
   render(){
@@ -47,3 +38,6 @@ export default class Auth extends React.Component{
     )
   }
 }
+Auth.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};

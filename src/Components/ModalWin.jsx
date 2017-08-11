@@ -1,31 +1,3 @@
-// export default class ModalWin extends React.Component{
-
-//   render(){
-//     return(
-//             <div className="ui basic modal" >
-//               <div className="ui icon header">
-//                 <i className="lock icon"></i>
-//                 Неверный пароль или Email
-//               </div>
-//               <div className="content">
-//                 <p>Если Вы забыли свой пароль нажмите на "Я не помню свой пароль".</p>
-//               </div>
-//               <div className="actions">
-//               {
-//               //   // <div className="ui red basic cancel inverted button">
-//               //   //   <i className="remove icon"></i>
-//               //   //   No
-//               //   // </div>
-//               }
-//                 <div className="ui green ok inverted button">
-//                   <i className="privacy icon"></i>
-//                   Ясно
-//                 </div>
-//               </div>
-//             </div>
-//     )
-//   }
-// }
 import React from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
@@ -43,12 +15,11 @@ export default class ModalWin extends React.Component{
   componentWillReceiveProps(nextProps) {
     if (nextProps.trigger.status === 404){
       this.setState({ open: true }, () =>{
-              // debugger
             })
+    }else{
     }
   }
   render(){
-    // const { open, dimmer } = this.state
     return(
             <Modal open={this.state.open} basic size='small'>
               <Header icon='lock' content='Неверный пароль или Email' />
