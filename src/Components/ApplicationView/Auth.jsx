@@ -17,7 +17,9 @@ export default class Auth extends React.Component{
   changeAuthStatus(result){
     this.setState({request: result}, () => { 
                                              if (result.status === 200){
-                                               this.props.history.push('/app')
+                                               this.props.history.push('/app')      // <------LOGINing
+                                               console.log(this.props.router.sessionUser)
+                                               // this.props.sessionUser = result
                                              }else if ( result.status === 404 ){
                                                console.log('authentication failed')
                                              }else{
@@ -28,7 +30,9 @@ export default class Auth extends React.Component{
   }
   render(){
   	// const goes here
+    // console.log("the prop hello is: " + this.props.route.hello)
     return(
+
       <div className="ui middle aligned center aligned grid container">
         
         <WelcomeHeader />

@@ -3,9 +3,9 @@ import Facility from './Facility'
 export default class Facilities extends React.Component{
   render(){
     return(
-      <ul>
-        <Facility />
-        <li>"each object"</li>
+    // Managers(users) facility
+      <ul><li>"each object"</li>
+        <li><Facility data-facility-id="id" /></li>
       </ul>
     )
   }
