@@ -11,7 +11,7 @@ export default class ModalWin extends React.Component{
 
   showModal(){this.setState({ open: true })}
   closeModal(){this.setState({ open: false })}
-  
+  //---------------------------------------------------------------------------------
   componentWillReceiveProps(nextProps) {
     if (nextProps.trigger.status === 404){
       this.setState({ open: true }, () =>{
@@ -19,6 +19,7 @@ export default class ModalWin extends React.Component{
     }else{
     }
   }
+  //---------------------------------------------------------------------------------
   render(){
     return(
             <Modal open={this.state.open} basic size='small'>

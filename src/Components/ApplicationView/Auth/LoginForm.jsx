@@ -1,16 +1,17 @@
 import React from 'react'
-import axios from 'axios';
+import axios from 'axios'
 import { newApiSessionAddress, registrationAddress, restorePasswordAddress } from '../../../Config/ApiConfig'
+import RegistrationForm from './RegistrationForm'
 export default class LoginForm extends React.Component{
   constructor(props) {
-    super(props);
+    super(props)
     this.state = { 
                    request: null,
                    usersEmail: '',
                    usersPassword: '',
                  }
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.loggingIn = this.loggingIn.bind(this)
   }
 
@@ -26,7 +27,10 @@ export default class LoginForm extends React.Component{
          ).then(response => {this.props.onChange(response)})
           .catch(error => {this.props.onChange(error.response)})
   }
-  
+  handleRegistration(){
+    //<RegistrationForm />
+
+  }
   handleEmailChange = e => {
     this.setState({usersEmail: e.target.value})
   }
@@ -74,7 +78,7 @@ export default class LoginForm extends React.Component{
             </div>           
             <div className="ui error message"></div>
           </form>
-          <div className="ui message">
+          <div className="ui message" onClick={this.handleRegistration}>
             <a href={registrationAddress}>Я тут впервые.</a>
           </div>
   

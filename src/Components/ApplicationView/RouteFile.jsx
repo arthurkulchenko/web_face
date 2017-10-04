@@ -9,10 +9,8 @@ export default class RouteFile extends React.Component{
     return(
       <main className="ui middle aligned center aligned grid container">
         <Switch>
-          <Route exact path='/' component={Auth} sessionUser={null} >
-            <Route sessionUser={null} />
-          </Route>
-          <Route path='/app' component={Session} sessionUser={null} />
+          <Route exact path='/' component={Auth} />
+          <Route path='/app' component={Session} />
         </Switch>
       </main>
     )

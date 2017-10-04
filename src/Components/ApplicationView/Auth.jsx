@@ -9,20 +9,22 @@ export default class Auth extends React.Component{
     super(props)
     this.state = ({
       request: null,
-      request_status: null
+      request_status: null,
+      hasError: false
     })
     this.changeAuthStatus = this.changeAuthStatus.bind(this)
   }
-
+  //componentDidCatch
   changeAuthStatus(result){
     this.setState({request: result}, () => { 
                                              if (result.status === 200){
                                                this.props.history.push('/app')      // <------LOGINing
-                                               console.log(this.props.router.sessionUser)
                                                // this.props.sessionUser = result
                                              }else if ( result.status === 404 ){
+                                               //this.setState(state =>({ ...state, hasError: true}))
                                                console.log('authentication failed')
                                              }else{
+                                               this.setState(state =>({ ...state, hasError: true}))
                                                console.log(result.status)
                                              }
                                             }
