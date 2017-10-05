@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class ModalWin extends React.Component{
   constructor(props) {
@@ -25,7 +26,8 @@ export default class ModalWin extends React.Component{
             <Modal open={this.state.open} basic size='small'>
               <Header icon='lock' content='Неверный пароль или Email' />
               <Modal.Content>
-                <p>Если Вы забыли свой пароль нажмите на "Я не помню свой пароль".</p>
+                <p>Если Вы забыли свой пароль нажмите на</p>
+                <Link to="/restore_my_password">Я не помню свой пароль</Link>
               </Modal.Content>
               <Modal.Actions>
                 <Button color='green' inverted onClick={this.closeModal}>

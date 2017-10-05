@@ -1,7 +1,14 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { newApiSessionAddress, registrationAddress, restorePasswordAddress } from '../../../Config/ApiConfig'
 import RegistrationForm from './RegistrationForm'
+
+var Person = (email, password) => {
+    this.email = email;
+    this.password = password;
+}
+
 export default class LoginForm extends React.Component{
   constructor(props) {
     super(props)
@@ -10,27 +17,39 @@ export default class LoginForm extends React.Component{
                    usersEmail: '',
                    usersPassword: '',
                  }
-    this.handleEmailChange = this.handleEmailChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.loggingIn = this.loggingIn.bind(this)
+    this.handleEmailChange        = this.handleEmailChange.bind(this)
+    this.handlePasswordChange     = this.handlePasswordChange.bind(this)
+    this.loggingIn                = this.loggingIn.bind(this)
   }
 
   loggingIn(){
-    axios({
-            params:{
-                    email: this.state.usersEmail,
-                    password: this.state.usersPassword
-                   },// IMPORTANT THAT PARAMS MUST BE FIRST
-            method: 'post',
-            url: newApiSessionAddress,
-          }
+    // var user = Person(this.state.usersEmail, this.state.usersPassword)
+    // console.log("user is comming")
+    // console.log(user)
+    // user.email = this.state.usersEmail
+    // user.password = this.state.usersPassword
+    axios.post(newApiSessionAddress+`?user[email]=${this.state.usersEmail}&user[password]=${this.state.usersPassword}`
+    // axios({
+      // IMPORTANT THAT PARAMS MUST BE FIRST
+            //user[email]=mail@mail.com&user[password]=123456
+            //Parameters: {"user"=>{"email"=>"mail@mail.com", "password"=>"[FILTERED]"}}
+
+            // params:{ 
+                     // user
+
+                    // user: {
+                      // email: this.state.usersEmail,
+                      // password: this.state.usersPassword
+                    // }
+                   // },
+            //Parameters: {"user"=>"{\"email\":\"mail@mail.com\",\"password\":\"123456\"}"}
+            // method: 'post',
+            // url: newApiSessionAddress,
+          // }
          ).then(response => {this.props.onChange(response)})
           .catch(error => {this.props.onChange(error.response)})
   }
-  handleRegistration(){
-    //<RegistrationForm />
-
-  }
+  
   handleEmailChange = e => {
     this.setState({usersEmail: e.target.value})
   }
@@ -41,7 +60,7 @@ export default class LoginForm extends React.Component{
 
   render(){
     return(
-      <div className="ui stackable very relaxed center aligned centred grid container">
+      <div className="ui stackable very relaxed middle aligned center aligned grid container">
         <div className="seven wide column">
           <form className="ui large form" action={newApiSessionAddress} method="post">
 
@@ -65,7 +84,7 @@ export default class LoginForm extends React.Component{
                       name="password" 
                       placeholder="Password"
                       onChange={this.handlePasswordChange}
-                   >
+                  >
                   </input>
                 </div>
               </div>
@@ -78,13 +97,10 @@ export default class LoginForm extends React.Component{
             </div>           
             <div className="ui error message"></div>
           </form>
-          <div className="ui message" onClick={this.handleRegistration}>
-            <a href={registrationAddress}>Я тут впервые.</a>
-          </div>
+          <Link to="/new_member">Я тут впервые</Link>
+          <br/>
+          <Link to="/restore_my_password">Я не помню пароль, что делать?</Link>
   
-         <div className="ui message">
-           <a href={restorePasswordAddress}>Я не помню пароль, что делать?</a>
-         </div>
         </div>
       </div>
     )

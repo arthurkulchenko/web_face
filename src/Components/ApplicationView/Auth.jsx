@@ -1,8 +1,8 @@
-import React         from 'react'
-import PropTypes     from 'prop-types'
-import LoginForm     from './Auth/LoginForm'
-import WelcomeHeader from './Auth/WelcomeHeader'
-import ModalWin      from '../ModalWin'
+import React            from 'react'
+//import PropTypes        from 'prop-types'
+import LoginForm        from './Auth/LoginForm'
+import WelcomeHeader    from './Auth/WelcomeHeader'
+import ModalWin         from '../ModalWin'
 
 export default class Auth extends React.Component{
   constructor(props){
@@ -13,15 +13,21 @@ export default class Auth extends React.Component{
       hasError: false
     })
     this.changeAuthStatus = this.changeAuthStatus.bind(this)
+
   }
-  //componentDidCatch
+
+  componentDidMount() {
+    // console.log(this.props.history)
+    // console.log(this.props)
+  }
+
   changeAuthStatus(result){
     this.setState({request: result}, () => { 
                                              if (result.status === 200){
                                                this.props.history.push('/app')      // <------LOGINing
                                                // this.props.sessionUser = result
                                              }else if ( result.status === 404 ){
-                                               //this.setState(state =>({ ...state, hasError: true}))
+                                               this.setState(state =>({ ...state, hasError: true}))
                                                console.log('authentication failed')
                                              }else{
                                                this.setState(state =>({ ...state, hasError: true}))
@@ -36,7 +42,6 @@ export default class Auth extends React.Component{
     return(
 
       <div className="ui middle aligned center aligned grid container">
-        
         <WelcomeHeader />
         <LoginForm onChange={this.changeAuthStatus}/>
         <ModalWin trigger={this.state.request}/>
@@ -44,6 +49,7 @@ export default class Auth extends React.Component{
     )
   }
 }
-Auth.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};
+// Validatior
+//Auth.contextTypes = {
+//    history: React.PropTypes.object.isRequired
+//};
